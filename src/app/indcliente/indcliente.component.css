@@ -31,6 +31,13 @@
     font-size: 8px;
 
 }
+#infoCliente{
+    border-left: 5px ;
+    margin: 0px 0 20px;
+    padding: 10px 20px;
+    font-size: 8px;
+
+}
 #rowtable{
     margin-top: 30px;	
     margin-bottom: 30px;
@@ -38,4 +45,8 @@
 #divid{
     margin-top: 30px;	
     margin-bottom: 30px;
+}
+#hr2 {
+    margin-top: 10px;
+    margin-bottom: 20px;	
 }

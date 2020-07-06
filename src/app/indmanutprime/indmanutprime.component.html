@@ -8,7 +8,7 @@
       </thf-datepicker>
       <thf-datepicker class="thf-md-3" name="endDate" [(ngModel)]="endDate" t-clean t-format="dd/mm/yyyy" t-label="Fim do Período" t-required>
       </thf-datepicker>
-      <thf-button id="btngerar" class="thf-md-6" (t-click)= "geraIndicadores()" [t-loading]="loadButton" t-icon="thf-icon thf-icon-logo-totvs" [t-label]="labelButton" t-primary="true">
+      <thf-button id="btngerar" class="thf-md-6" (t-click)= "validaSessao()" [t-loading]="loadButton" t-icon="thf-icon thf-icon-logo-totvs" [t-label]="labelButton" t-primary="true">
       </thf-button>
   </thf-widget>
   </div>
@@ -22,6 +22,43 @@
       <div class="thf-row" id="titlebacklog">
           <h1>Backlog</h1>    
       </div>
+
+    <div class="thf-row">
+      <thf-widget class="thf-md-6" id="wid" >
+        <kendo-chart class="thf-md-12" id="EntregasSlaPriv" #EntregasSla
+         [categoryAxis]="{'categories' : categchart8}"
+         style.height="390px;"
+         type="donut"
+         (seriesClick)="openModal($event, 'entSlaPriv')" [seriesColors]="['#3498db', '#7F8C8D']">
+          <kendo-chart-title text="SLA Privado A.M.S"> </kendo-chart-title>
+          <kendo-chart-legend position="bottom" orientation="horizontal"> </kendo-chart-legend>
+          <kendo-chart-tooltip> </kendo-chart-tooltip>
+          <kendo-chart-series>
+          <kendo-chart-series-item *ngFor="let series of serieschart8; let outermost = last;" type="donut" [startAngle]="150" [name]="series.category" [data]="series.data"
+                                   field="value" categoryField="category" colorField="color">
+            <kendo-chart-series-item-labels visible="true" *ngIf="outermost" position="outsideEnd" background="none" [content]="labelContent"></kendo-chart-series-item-labels>
+          </kendo-chart-series-item>
+          </kendo-chart-series>
+       </kendo-chart>
+      </thf-widget>
+      <thf-widget class="thf-md-6" id="wid" >
+        <kendo-chart class="thf-md-12" id="EntregasSlaPublic" #EntregasSla
+         [categoryAxis]="{'categories' : categchart9}"
+         style.height="390px;"
+         type="donut"
+         (seriesClick)="openModal($event, 'entSlaPublic')" [seriesColors]="['#3498db', '#7F8C8D']">
+          <kendo-chart-title text="SLA Público"> </kendo-chart-title>
+          <kendo-chart-legend position="bottom" orientation="horizontal"> </kendo-chart-legend>
+          <kendo-chart-tooltip> </kendo-chart-tooltip>
+          <kendo-chart-series>
+          <kendo-chart-series-item *ngFor="let series of serieschart9; let outermost = last;" type="donut" [startAngle]="150" [name]="series.category" [data]="series.data"
+                                   field="value" categoryField="category" colorField="color">
+            <kendo-chart-series-item-labels visible="true" *ngIf="outermost" position="outsideEnd" background="none" [content]="labelContent"></kendo-chart-series-item-labels>
+          </kendo-chart-series-item>
+          </kendo-chart-series>
+       </kendo-chart>
+      </thf-widget>      
+    </div>      
     
     <div class="thf-row">
       <thf-widget class="thf-md-6" id="wid">
@@ -120,7 +157,7 @@
       <thf-grid 
       [t-data]="itemsGrid" 
       [t-columns]="columnsGrid" 
-      [t-sortable]=false 
+      t-sortable=true 
       [t-show-export-buttons]=true 
       [t-editable]=false 
       t-selectable=false>

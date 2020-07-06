@@ -8,7 +8,7 @@
         </thf-datepicker>
         <thf-datepicker class="thf-md-3" name="endDate" [(ngModel)]="endDate" t-clean t-format="dd/mm/yyyy" t-label="Fim do Período" t-required>
         </thf-datepicker>
-        <thf-button id="btngerar" class="thf-md-6" (t-click)= "geraIndicadores()" [t-loading]="loadButton" t-icon="thf-icon thf-icon-logo-totvs" [t-label]="labelButton" t-primary="true">
+        <thf-button id="btngerar" class="thf-md-6" (t-click)= "validaSessao()" [t-loading]="loadButton" t-icon="thf-icon thf-icon-logo-totvs" [t-label]="labelButton" t-primary="true">
         </thf-button>
     </thf-widget>
     </div>
@@ -21,6 +21,11 @@
     <div class="thf-row" id="titlebacklog">
       <h1>Rejeições</h1>    
     </div>  
+
+    <div class="thf-row" id="totalIssues">
+      <h1>Total Issues: {{totalIssues}}</h1>
+      <br>    
+    </div>
 
     <div class="thf-row">
       <thf-widget class="thf-md-12">
@@ -58,7 +63,7 @@
         <thf-grid 
           [t-data]="itemsGrid" 
           [t-columns]="columnsGrid" 
-          [t-sortable]=false 
+          t-sortable=true 
           [t-show-export-buttons]=true 
           [t-editable]=false 
           t-selectable=false>
